@@ -1,4 +1,4 @@
-from oauth.models.permissions import Permission
+from oauth.models.permission import Permission
 from oauth.repositories.base import BaseRepository
 
 

@@ -36,5 +36,14 @@ class LazyView(object):
 app.add_url_rule("/roles", methods=['GET'],
                  view_func=LazyView('api.roles_api.list_roles'))
 
+app.add_url_rule("/roles", methods=['POST'],
+                 view_func=LazyView('api.roles_api.create_role'))
+
+app.add_url_rule("/roles/<string:role_id>", methods=['PUT'],
+                 view_func=LazyView('api.roles_api.update_role'))
+
+app.add_url_rule("/roles/<string:role_id>", methods=['DELETE'],
+                 view_func=LazyView('api.roles_api.delete_role'))
+
 if __name__ == "__main__":
     app.run(port=8000)

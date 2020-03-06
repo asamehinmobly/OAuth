@@ -1,5 +1,5 @@
 from oauth.repositories.base import BaseRepository
-from oauth.models.roles import Role
+from oauth.models.role import Role
 
 
 class RoleRepository(BaseRepository):

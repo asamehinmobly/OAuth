@@ -1,4 +1,4 @@
-from oauth.models.resources import Resource
+from oauth.models.resource import Resource
 from oauth.repositories.base import BaseRepository
 
 

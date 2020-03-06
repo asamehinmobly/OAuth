@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, func
+from sqlalchemy import Column, Integer, DateTime, func
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -6,7 +6,7 @@ Base = declarative_base()
 
 class Permission(Base):
     __tablename__ = 'permission'
-    id = Column(String(37), primary_key=True)
+    id = Column(Integer, primary_key=True)
     user_id = Column(Integer)
     role_id = Column(Integer)
     resource_id = Column(Integer)
