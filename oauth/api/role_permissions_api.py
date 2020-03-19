@@ -27,9 +27,7 @@ def get_permissions(app_id, role_id):
     try:
         role_permission_repository = RolePermissionRepository()
         with session_scope() as session:
-            data = request.get_json()
-            data['role_id'] = role_id
-            role_permission = role_permission_repository.create(session, **data)
+            role_permission = role_permission_repository.get(session, **{"role_id": role_id})
             return Response(response=json.dumps(role_permission),
                             status=HTTPStatus.OK.value, mimetype='application/json')
 
@@ -41,13 +39,11 @@ def get_permissions(app_id, role_id):
                         status=HTTPStatus.BAD_REQUEST.value, mimetype='application/json')
 
 
-def delete_permission(app_id, role_id, ):
+def delete_permission(app_id, role_id, permission_id):
     try:
         role_permission_repository = RolePermissionRepository()
         with session_scope() as session:
-            data = request.get_json()
-            data['role_id'] = role_id
-            role_permission = role_permission_repository.create(session, **data)
+            role_permission = role_permission_repository.delete(session, permission_id)
             return Response(response=json.dumps(role_permission),
                             status=HTTPStatus.OK.value, mimetype='application/json')
 
