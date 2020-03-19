@@ -10,8 +10,3 @@ class Base:
     def _asdict(self):
         return {c.key: getattr(self, c.key)
                 for c in inspect(self).mapper.column_attrs}
-
-
-class GenerateUUIDBeforeInsertExtension(MapperExtension):
-    def before_insert(self, mapper, connection, instance):
-        instance.id = uuid.uuid4().hex

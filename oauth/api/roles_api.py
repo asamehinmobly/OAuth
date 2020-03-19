@@ -1,5 +1,3 @@
-import json
-
 from flask import Response, request
 from oauth.gateway.db import session_scope
 from oauth.repositories.roles import RoleRepository
