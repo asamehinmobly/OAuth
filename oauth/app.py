@@ -1,6 +1,6 @@
 from flask import Flask
 from werkzeug.utils import import_string, cached_property
-from oauth.middlewares.api_decorators import oauth_checker
+from middlewares.api_decorators import oauth_checker
 
 app = Flask('oauth')
 app.config.from_object('settings')
@@ -65,4 +65,4 @@ app.add_url_rule("/resources/<string:resource_id>", methods=['DELETE'],
                  view_func=LazyView('api.resources_api.delete_resource'))
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    app.run(port=80)

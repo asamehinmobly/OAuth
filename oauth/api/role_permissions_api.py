@@ -1,7 +1,7 @@
 from flask import Response, request
-from oauth.gateway.db import session_scope
-from oauth.repositories.role_permission import RolePermissionRepository
-from oauth.utils import json
+from gateway.db import session_scope
+from repositories.role_permission import RolePermissionRepository
+from utils import json
 from http import HTTPStatus
 
 

@@ -1,9 +1,9 @@
 import environ
 
 # for running local without docker
-environ.Env.read_env()
-env_file = (environ.Path(__file__) - 2) + ".env"
-environ.Env.read_env(str(env_file))
+# environ.Env.read_env()
+# env_file = (environ.Path(__file__) - 2) + ".env"
+# environ.Env.read_env(str(env_file))
 
 env = environ.Env()
 

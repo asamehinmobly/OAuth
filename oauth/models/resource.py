@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, DateTime, func, Integer
-from oauth.models import Base
+from models import Base
 
 
 class Resource(Base):

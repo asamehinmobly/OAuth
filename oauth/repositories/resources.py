@@ -1,5 +1,5 @@
-from oauth.models.resource import Resource
-from oauth.repositories.base import BaseRepository
+from models.resource import Resource
+from repositories.base import BaseRepository
 
 
 class ResourceRepository(BaseRepository):

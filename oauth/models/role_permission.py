@@ -2,10 +2,10 @@ from unicodedata import name
 
 from sqlalchemy import Column, Integer, DateTime, func, ForeignKey
 from sqlalchemy.orm import relationship
-from oauth.models.resource import Resource
-from oauth.models.action import Action
-from oauth.models.role import Role
-from oauth.models import Base
+from models.resource import Resource
+from models.action import Action
+from models.role import Role
+from models import Base
 
 
 class RolePermission(Base):

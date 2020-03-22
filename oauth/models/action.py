@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, DateTime, func, inspect, Integer
-from oauth.models import Base
+from models import Base
 
 
 class Action(Base):
