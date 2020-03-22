@@ -39,9 +39,9 @@ class BaseRepository(object):
         except Exception as err:
             raise err
 
-    def get(self, session, **kwargs):
+    def get(self, session, app_id, **kwargs):
         try:
-            data = session.query(self.Model).filter_by(**kwargs).all()
+            data = session.query(self.Model).filter_by(app_id=app_id, **kwargs).all()
             data = map(lambda row: row._asdict(), data)
             return list(data)
         except SQLAlchemyError as err:

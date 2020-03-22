@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, func, inspect, Integer
+from sqlalchemy import Column, String, DateTime, func, Integer
 from oauth.models import Base
 
 
