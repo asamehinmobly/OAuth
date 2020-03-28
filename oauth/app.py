@@ -31,6 +31,9 @@ class LazyView(object):
 
 
 # Actions
+app.add_url_rule("/user/<string:user_id>/roles", methods=['GET'],
+                 view_func=LazyView('api.user_roles_api.get_roles'))
+
 app.add_url_rule("/roles", methods=['GET'],
                  view_func=LazyView('api.roles_api.list_roles'))
 
@@ -65,4 +68,4 @@ app.add_url_rule("/resources/<string:resource_id>", methods=['DELETE'],
                  view_func=LazyView('api.resources_api.delete_resource'))
 
 if __name__ == "__main__":
-    app.run(port=80)
+    app.run(port=8000)
