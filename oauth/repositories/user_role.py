@@ -15,7 +15,7 @@ class UserRoleRepository(BaseRepository):
 
     def get(self, session, **kwargs):
         try:
-            data = session.query(Role).join(self.Model).all()
+            data = session.query(Role).join(self.Model).filter_by(**kwargs).all()
             data = map(lambda row: row._asdict(), data)
             print(data)
             return list(data)
