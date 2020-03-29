@@ -32,7 +32,7 @@ class LazyView(object):
 
 # Actions
 app.add_url_rule("/user/<string:user_id>/roles", methods=['GET'],
-                 view_func=LazyView('api.user_roles_api.get_roles'))
+                 view_func=LazyView('api.user_roles_api.get_roles', False))
 
 app.add_url_rule("/roles", methods=['GET'],
                  view_func=LazyView('api.roles_api.list_roles'))

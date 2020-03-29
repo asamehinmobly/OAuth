@@ -5,7 +5,7 @@ from utils import json
 from http import HTTPStatus
 
 
-def get_roles(app_id, user_id):
+def get_roles(user_id):
     try:
         user_role_repository = UserRoleRepository()
         with session_scope() as session:
