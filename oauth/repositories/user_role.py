@@ -17,7 +17,6 @@ class UserRoleRepository(BaseRepository):
         try:
             data = session.query(Role).join(self.Model).filter_by(**kwargs).all()
             data = map(lambda row: row._asdict(), data)
-            print(data)
             return list(data)
         except SQLAlchemyError as err:
             raise err

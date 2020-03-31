@@ -55,6 +55,9 @@ app.add_url_rule("/roles/<string:role_id>/permissions", methods=['POST'],
 app.add_url_rule("/roles/<string:role_id>/permissions/<string:permission_id>", methods=['DELETE'],
                  view_func=LazyView('api.role_permissions_api.delete_permission'))
 
+app.add_url_rule("/roles/<string:role_id>/permission_data", methods=['GET'],
+                 view_func=LazyView('api.roles_api.get_permission_data'))
+
 app.add_url_rule("/resources", methods=['GET'],
                  view_func=LazyView('api.resources_api.list_resources'))
 
@@ -68,4 +71,4 @@ app.add_url_rule("/resources/<string:resource_id>", methods=['DELETE'],
                  view_func=LazyView('api.resources_api.delete_resource'))
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    app.run(port=80)

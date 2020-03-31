@@ -81,3 +81,18 @@ def delete_role(app_id, role_id):
         print(err.__dict__, '\n\n')
         return Response(response=json.dumps({"errors": err.message}),
                         status=HTTPStatus.BAD_REQUEST.value, mimetype='application/json')
+
+
+def get_permission_data(app_id, role_id):
+    try:
+        role_repository = RoleRepository()
+        permissions = role_repository.get_permissions(app_id, role_id)
+        return Response(response=json.dumps(permissions),
+                        status=HTTPStatus.OK.value, mimetype='application/json')
+
+    except Exception as err:
+        if 'message' not in err.__dict__:
+            err.message = repr(err)
+        print(err.__dict__, '\n\n')
+        return Response(response=json.dumps({"errors": err.message}),
+                        status=HTTPStatus.NOT_FOUND.value, mimetype='application/json')
