@@ -37,7 +37,7 @@ SELECT
             `resource`,
             `action`
         WHERE
-            `action`.id = `role_permission`.action_id AND `resource`.id = `role_permission`.resource_id
+            `action`.id = `role_permission`.action_id AND `resource`.id = `role_permission`.resource_id AND `resource`.app_id = app_id
         GROUP BY
             resource.id
     ) AS resources
