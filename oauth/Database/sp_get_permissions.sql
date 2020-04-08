@@ -16,7 +16,7 @@ SELECT
         `role`,
         (
         SELECT
-            role_permission.role_id,
+            role_permission.role_id AS `role_id`,
             JSON_OBJECT(
                 "id",
                 resource.id,
@@ -42,7 +42,7 @@ SELECT
             resource.id
     ) AS resources
 WHERE
-    role.id = role_id AND role.app_id = app_id
+    role.id = resources.role_id AND role.id = role_id AND role.app_id = app_id
 GROUP BY
     role.id$$
 DELIMITER ;
