@@ -15,9 +15,10 @@ class UserRoleRepository(BaseRepository):
 
     def get(self, session, **kwargs):
         try:
-            data = session.query(Role).join(self.Model).filter_by(**kwargs).all()
-            data = map(lambda row: row._asdict(), data)
-            return list(data)
+            data = []
+            for value in session.query(Role.id).join(self.Model).filter_by(**kwargs).all():
+                data.append(value.id)
+            return data
         except SQLAlchemyError as err:
             raise err
         except ValidationError as err:
