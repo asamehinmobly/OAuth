@@ -42,7 +42,7 @@ SELECT
             resource.id
     ) AS resources
 WHERE
-    role.id = role_id
+    role.id = role_id AND role.app_id = app_id
 GROUP BY
     role.id$$
 DELIMITER ;
