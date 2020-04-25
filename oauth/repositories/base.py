@@ -3,9 +3,10 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm.exc import NoResultFound
 
 from gateway.db import session_scope
+from repositories.repository import IRepository
 
 
-class BaseRepository(object):
+class BaseRepository(IRepository):
     Model = None
     ModelName = ""
 

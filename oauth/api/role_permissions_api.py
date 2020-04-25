@@ -39,7 +39,7 @@ def get_permissions(app_id, role_id):
 def delete_permission(app_id, role_id, permission_id):
     try:
         role_permission_repository = RolePermissionRepository()
-        role_permission = role_permission_repository.delete(app_id, role_id, permission_id)
+        role_permission_repository.delete(app_id, role_id, permission_id)
         return Response(response="",
                         status=HTTPStatus.NO_CONTENT.value, mimetype='application/json')
 
