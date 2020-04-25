@@ -8,3 +8,11 @@ class Action(Base):
     name = Column(String(256), nullable=False)
     creation_date = Column(DateTime, default=func.now())
     last_updated = Column(DateTime, default=func.now(), onupdate=func.now())
+
+    # resource_actions = relationship(RolePermission, backref="resource")
+
+    def as_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }
