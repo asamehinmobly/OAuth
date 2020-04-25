@@ -31,7 +31,7 @@ class BaseRepository(object):
         try:
             with session_scope() as session:
                 data = session.query(self.Model).filter_by(app_id=app_id).all()
-                data = map(lambda row: row._asdict(), data)
+                data = map(lambda row: row.as_dict(), data)
                 return list(data)
         except SQLAlchemyError as err:
             raise err

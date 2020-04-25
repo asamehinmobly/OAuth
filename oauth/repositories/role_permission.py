@@ -5,6 +5,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm.exc import NoResultFound
 
 from gateway.db import session_scope
+from utils.redis import RedisCash
 
 
 class RolePermissionRepository(BaseRepository):
@@ -31,17 +32,39 @@ class RolePermissionRepository(BaseRepository):
         except Exception as err:
             raise err
 
-    def delete(self, model_id):
+    def create(self, app_id, **kwargs):
         try:
             with session_scope() as session:
-                query = session.query(self.Model).filter_by(id=model_id)
+                redis = RedisCash()
+                row = self.Model(**kwargs)
+                session.add(row)
+                session.flush()
+                session.refresh(row)
+                redis.app_prefix_clear(kwargs['role_id'], app_id)
+                return row._asdict()
+        except SQLAlchemyError as err:
+            raise err
+        except ValidationError as err:
+            raise err
+        except DataError as err:
+            err.message = err.to_primitive()
+            raise err
+        except Exception as err:
+            raise err
+
+    def delete(self, app_id, role_id, permission_id):
+        try:
+            with session_scope() as session:
+                redis = RedisCash()
+                query = session.query(self.Model).filter_by(id=permission_id)
                 row = query.first()
                 if row is None:
                     raise NoResultFound(
                         "{model_name} with id: {model_id} not found ".format(
                             model_name=self.ModelName,
-                            model_id=model_id,
+                            model_id=permission_id,
                         ))
+                redis.app_prefix_clear(role_id, app_id)
                 query.delete()
                 return row._asdict()
         except SQLAlchemyError as err:

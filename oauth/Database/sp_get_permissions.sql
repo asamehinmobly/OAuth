@@ -19,27 +19,23 @@ SELECT
             role_permission.role_id AS `role_id`,
             JSON_OBJECT(
                 "id",
-                resource.id,
+                r2.id,
                 "name",
-                resource.name,
+                r2.name,
                 "actions",
                 JSON_ARRAYAGG(
-                    JSON_OBJECT(
-                        "id",
-                        `action`.id,
-                        "name",
                         `action`.name
-                    )
                 )
             ) AS resources_data
         FROM
             `role_permission`,
-            `resource`,
+            `resource` AS r1,
+            `resource` AS r2,
             `action`
         WHERE
-            `action`.id = `role_permission`.action_id AND `resource`.id = `role_permission`.resource_id AND `resource`.app_id = app_id AND `role_permission`.`role_id` = role_id
+            `action`.id = `role_permission`.action_id AND r1.id = `role_permission`.resource_id AND r1.app_id = app_id AND `role_permission`.`role_id` = role_id AND r1.id = r2.parent_id
         GROUP BY
-            resource.id
+            r2.id
     ) AS resources
 WHERE
     role.id = resources.role_id AND role.id = role_id AND role.app_id = app_id
