@@ -1,5 +1,4 @@
 from flask import Response, request
-from gateway.db import session_scope
 from repositories.resources import ResourceRepository
 from utils import json
 from http import HTTPStatus
